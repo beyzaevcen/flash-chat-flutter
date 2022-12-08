@@ -12,28 +12,35 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin {
 
   AnimationController controller;
+  Animation animation;
   @override
   void initState() {
     super.initState();
 
     controller=AnimationController(
-      duration: Duration(seconds: 1),
+      duration: Duration(seconds: 2),
       vsync:this,
-      upperBound: 100.0
     );
+    
+    animation=ColorTween(begin: Colors.white,end:Colors.blue[100]).animate(controller);
+
+    //animation=CurvedAnimation(parent:controller ,curve:Curves.easeIn );
 
     controller.forward();
+    animation.addStatusListener((status) {
+      print(status);
+    });
     controller.addListener(() {
       setState(() {
 
       });
-      print(controller.value);
+      print(animation.value);
     });
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: animation.value,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -51,9 +58,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                 ),
                 Text(
                   'Flash Chat',
+                  //'${controller.value.toInt()}%' => yüzde artarak animasyon
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 50.0,
+                    fontSize: 40.0,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
