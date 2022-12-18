@@ -42,7 +42,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       decoration: kMessageTextFieldDecoration,
                     ),
                   ),
-                  FlatButton(
+                 /* FlatButton(
                     onPressed: () {
                       //Implement send functionality.
                     },
@@ -51,6 +51,8 @@ class _ChatScreenState extends State<ChatScreen> {
                       style: kSendButtonTextStyle,
                     ),
                   ),
+
+                  */
                 ],
               ),
             ),
